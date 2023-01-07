@@ -12,20 +12,16 @@ const Nav = () => {
 
   const links = [
     {
-      path: 'rockets',
-      text: 'Rockets',
+      path: 'home',
+      text: 'Home',
     },
     {
-      path: 'dragons',
-      text: 'Dragons',
+      path: 'components',
+      text: 'Components',
     },
     {
-      path: 'missions',
-      text: 'Missions',
-    },
-    {
-      path: 'profile',
-      text: 'My Profile',
+      path: 'settings',
+      text: 'Settings',
     },
   ];
 
@@ -33,7 +29,7 @@ const Nav = () => {
     <nav className="navBar">
       <div className="logo-container">
         <img alt="Cool logo." className="logo-img" width={60} height={60} />
-        <h1>Space Travelers&apos; Hub</h1>
+        <h1>Control</h1>
       </div>
 
       {openMenu ? (<AiOutlineClose onClick={() => toggleMenu()} className="menu-icon" />) : (<AiOutlineMenu onClick={() => toggleMenu()} className="menu-icon" />)}

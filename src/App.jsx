@@ -7,8 +7,10 @@ function App() {
     <div className="App">
       <Nav />
       <Routes>
-        <Route path="/" element={<Navigate replace to="/component" />} />
-        <Route path="/component" element={<>Nothing here</>} />
+        <Route path="/" element={<Navigate replace to="/home" />} />
+        <Route path="/home" element={<>Build here</>} />
+        <Route path="/components" element={<>Components go here</>} />
+        <Route path="/settings" element={<>Settings go here</>} />
       </Routes>
     </div>
   );
