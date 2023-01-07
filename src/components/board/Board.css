@@ -1,0 +1,7 @@
+.board {
+  width: 100%;
+  min-height: 80%;
+  background-color: rgb(251, 251, 251);
+  border: 4px solid rgba(196, 196, 196, 0.8);
+  border-radius: 10px;
+}
