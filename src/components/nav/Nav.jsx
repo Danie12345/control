@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
-import logo from '../../assets/logo.png';
+// import logo from '../../assets/logo.png';
 import './Nav.css';
 
 const Nav = () => {
@@ -12,28 +12,24 @@ const Nav = () => {
 
   const links = [
     {
-      path: 'rockets',
-      text: 'Rockets',
+      path: 'home',
+      text: 'Home',
     },
     {
-      path: 'dragons',
-      text: 'Dragons',
+      path: 'components',
+      text: 'Components',
     },
     {
-      path: 'missions',
-      text: 'Missions',
-    },
-    {
-      path: 'profile',
-      text: 'My Profile',
+      path: 'settings',
+      text: 'Settings',
     },
   ];
 
   return (
     <nav className="navBar">
       <div className="logo-container">
-        <img src={logo} alt="Cool logo." className="logo-img" width={60} height={60} />
-        <h1>Space Travelers&apos; Hub</h1>
+        <img alt="Cool logo." className="logo-img" width={60} height={60} />
+        <h1>Control</h1>
       </div>
 
       {openMenu ? (<AiOutlineClose onClick={() => toggleMenu()} className="menu-icon" />) : (<AiOutlineMenu onClick={() => toggleMenu()} className="menu-icon" />)}
