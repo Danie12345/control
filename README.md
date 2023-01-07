@@ -1,20 +1,15 @@
-![](https://img.shields.io/badge/Microverse-blueviolet)
+# Control
 
-# Project Name
-
-> Project description.
+> Want to build circuits and be able to have control over your logic?
 
 
 ## Built With
 - React
 - Redux
-- Jest and react-testing-library
-- Axios
-- Some API
-- Netlify
 - Gitflow
+- 1 month of no coding built up
 
-## Live Demos
+## Live Demos (unpublished)
 - [Netlify](empty link)
 - [Heroku](empty link)
 
@@ -30,7 +25,7 @@ To get a local copy up and running follow these simple example steps.
 To setup the project locally: clone the repository using:
 
 ```
-git clone git@github.com:user/repo.git
+git clone git@github.com:Danie12345/control.git
 ```
 
 ### Install dependencies
@@ -56,14 +51,12 @@ run: `npm start`
 ## 🤝 Contributing
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues](../../issues/) page.
+Feel free to check the [issues](https://github.com/Danie12345/control/issues/) page.
 
 
 ## Show your support
 Give a ⭐️ if you like this project!
 
-## Acknowledgments
-- Hat tip to code reviewers and to everyone who reviewed the project and made suggestions.
 
 ## 📝 License
 This project is [MIT](LICENSE) licensed.
