@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
-import logo from '../../assets/logo.png';
+// import logo from '../../assets/logo.png';
 import './Nav.css';
 
 const Nav = () => {
@@ -32,7 +32,7 @@ const Nav = () => {
   return (
     <nav className="navBar">
       <div className="logo-container">
-        <img src={logo} alt="Cool logo." className="logo-img" width={60} height={60} />
+        <img alt="Cool logo." className="logo-img" width={60} height={60} />
         <h1>Space Travelers&apos; Hub</h1>
       </div>
 

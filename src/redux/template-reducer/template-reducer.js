@@ -1,6 +1,7 @@
 import SomeService from '../../services/SomeService';
 
 const SOME_ACTION = 'template/template-reducer/SOME_ACTION';
+const ANOTHER_ACTION = 'template/template-reducer/ANOTHER_ACTION';
 
 async function doSomething(dispatch, getState) {
   const { stuff: currentStuffs } = getState();
@@ -26,7 +27,7 @@ function doAnotherThing(data) {
 export default function reducer(state = [], action) {
   switch (action.type) {
     case SOME_ACTION:
-      return state
+      return state;
     case ANOTHER_ACTION:
       return state;
     default:
@@ -34,4 +35,4 @@ export default function reducer(state = [], action) {
   }
 }
 
-export { fetchDragons, toggleReservation };
+export { doSomething, doAnotherThing };
