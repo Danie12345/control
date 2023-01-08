@@ -1,0 +1,12 @@
+.chip {
+  background-color: rgb(39, 39, 39);
+  cursor: move;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chip-name {
+  color: white;
+}
