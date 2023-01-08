@@ -7,7 +7,7 @@ import './Chip.css';
 const role = 'BoxPreview';
 
 const Chip = ({
-  id, left, top, name, hideSourceOnDrag, children, size,
+  id, left, top, name, hideSourceOnDrag, size,
 }) => {
   const [{ isDragging }, drag] = useDrag(
     () => ({
@@ -55,7 +55,6 @@ const Chip = ({
       role={role}
     >
       <div className="chip-name">{name}</div>
-      {children}
     </div>
   );
 };
