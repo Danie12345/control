@@ -68,8 +68,4 @@ const Board = ({ hideSourceOnDrag }) => {
   );
 };
 
-// Board.propTypes = {
-//   isDragging: PropTypes .isRequired,
-// };
-
 export default Board;
