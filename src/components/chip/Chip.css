@@ -1,7 +1,7 @@
 .chip {
   background-color: rgb(39, 39, 39);
-  cursor: move;
-  position: relative;
+  cursor: grab;
+  position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -4,7 +4,7 @@ import { useDrop } from 'react-dnd';
 import snap from '@reload-kurt/grid-snap/src/snap';
 import ItemTypes from '../../utils/itemtypes';
 import Chip from '../chip/Chip';
-import { addChip, moveChip } from '../../redux/chips/chips';
+import { addChip, delChip, moveChip } from '../../redux/chips/chips';
 import './Board.css';
 
 const Board = ({ hideSourceOnDrag }) => {
@@ -14,13 +14,12 @@ const Board = ({ hideSourceOnDrag }) => {
   const globalSize = 16;
 
   const newChip = () => {
-    const currHeight = Object.values(chips).reduce((total, chip) => total + chip.size, 0);
     const id = uuidv4();
     const breadboard = document.getElementById('breadboard');
     const size = 2;
     const [cHeight, cWidth] = [2 * globalSize, 3 * globalSize]; // chip height and length
     const chip = {
-      top: snap((breadboard.offsetHeight / 2) - (currHeight * (2 * globalSize)) - (cHeight * size) / 2, globalSize) - globalSize,
+      top: snap((breadboard.offsetHeight / 2) - (cHeight * size) / 2, globalSize) - globalSize,
       left: snap((breadboard.offsetWidth / 2) - (cWidth * size) / 2, globalSize) - globalSize,
       name: '555',
       size,
@@ -45,11 +44,22 @@ const Board = ({ hideSourceOnDrag }) => {
     [],
   );
 
+  const [, remove] = useDrop(
+    () => ({
+      accept: ItemTypes.CHIP,
+      drop(item) {
+        dispatch(delChip(item.id));
+        return undefined;
+      },
+    }),
+    [],
+  );
+
   const componentLimit = 10;
 
   return (
     <div style={{ width: '100%' }}>
-      <div ref={drop} className="board" id="breadboard">
+      <div ref={drop} style={{ position: 'relative' }} className="board" id="breadboard">
         {Object.keys(chips).map((id) => {
           const {
             left, top, name, size, dimensions,
@@ -74,6 +84,9 @@ const Board = ({ hideSourceOnDrag }) => {
         <span> / </span>
         {componentLimit}
       </button>
+      <div ref={remove} style={{ width: 50, height: 50, border: '1px solid black' }}>
+        TRASH
+      </div>
     </div>
   );
 };
