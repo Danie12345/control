@@ -1,14 +1,14 @@
 // import update from 'immutability-helper';
 
-const { v4: uuidv4 } = require('uuid');
+// const { v4: uuidv4 } = require('uuid');
 
 const initialState = {
-  [uuidv4()]: {
-    top: 48, left: 96, name: '555', size: 2,
-  },
-  [uuidv4()]: {
-    top: 128, left: 256, name: 'UCC1837', size: 1,
-  },
+  // [uuidv4()]: {
+  //   top: 48, left: 96, name: '555', size: 2, dimensions: [2, 3],
+  // },
+  // [uuidv4()]: {
+  //   top: 128, left: 256, name: 'UCC1837', size: 1, dimensions: [2, 3],
+  // },
   // [uuidv4()]: {
   //   top: 0, left: 0, name: 'UCC1838', size: 1,
   // },
