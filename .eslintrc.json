@@ -20,7 +20,8 @@
     "react/prop-types":"off",
     "no-param-reassign":"off",
     "import/no-unresolved": "off",
-    "no-shadow": "off"
+    "no-shadow": "off",
+    "max-len": ["error", { "code": 256 }]
   },
   "ignorePatterns": ["dist/", "build/"],
   "overrides": [
