@@ -7,7 +7,7 @@ import './Chip.css';
 const role = 'BoxPreview';
 
 const Chip = ({
-  id, left, top, name, hideSourceOnDrag, size,
+  id, left, top, name, hideSourceOnDrag, size, dimensions,
 }) => {
   const [{ isDragging }, drag] = useDrag(
     () => ({
@@ -22,12 +22,11 @@ const Chip = ({
   if (isDragging && !hideSourceOnDrag) {
     return <div ref={drag} />;
   }
-
-  const [width, height, borderRad] = [48, 32, 2];
+  const [width, height, borderRad] = [...dimensions, 2];
   const mask = `
     radial-gradient(
       circle at 106% 50%,
-      transparent ${Math.trunc(6 * size)}px,
+      transparent ${Math.trunc(Math.max(24, height) * size * (2 / 15))}px,
       #000 0
     )
   `;

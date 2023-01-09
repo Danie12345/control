@@ -10,22 +10,31 @@ import './Board.css';
 const Board = ({ hideSourceOnDrag }) => {
   const dispatch = useDispatch();
 
+  const chips = useSelector((state) => state.chips);
+  const globalSize = 16;
+
   const newChip = () => {
+    const currHeight = Object.values(chips).reduce((total, chip) => total + chip.size, 0);
     const id = uuidv4();
+    const breadboard = document.getElementById('breadboard');
+    const size = 2;
+    const [cHeight, cWidth] = [2 * globalSize, 3 * globalSize]; // chip height and length
     const chip = {
-      top: 0, left: 0, name: '555', size: 1,
+      top: snap((breadboard.offsetHeight / 2) - (currHeight * (2 * globalSize)) - (cHeight * size) / 2, globalSize) - globalSize,
+      left: snap((breadboard.offsetWidth / 2) - (cWidth * size) / 2, globalSize) - globalSize,
+      name: '555',
+      size,
+      dimensions: [cWidth, cHeight],
     };
     dispatch(addChip([id, chip]));
   };
-
-  const chips = useSelector((state) => state.chips);
 
   const [, drop] = useDrop(
     () => ({
       accept: ItemTypes.CHIP,
       drop(item, monitor) {
         const { x, y } = monitor.getDifferenceFromInitialOffset();
-        const gridboxsize = 16;
+        const gridboxsize = globalSize;
         let left = item.left + x;
         let top = item.top + y;
         [left, top] = snap([left, top], [gridboxsize, gridboxsize]);
@@ -40,10 +49,10 @@ const Board = ({ hideSourceOnDrag }) => {
 
   return (
     <div style={{ width: '100%' }}>
-      <div ref={drop} className="board">
+      <div ref={drop} className="board" id="breadboard">
         {Object.keys(chips).map((id) => {
           const {
-            left, top, name, size,
+            left, top, name, size, dimensions,
           } = chips[id];
           return (
             <Chip
@@ -54,6 +63,7 @@ const Board = ({ hideSourceOnDrag }) => {
               name={name}
               hideSourceOnDrag={hideSourceOnDrag}
               size={size}
+              dimensions={dimensions}
             />
           );
         })}
