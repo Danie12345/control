@@ -6,14 +6,14 @@
   width: 100%;
   min-height: 80%;
   max-height: 80%;
-  background-color: rgb(251, 251, 251);
-  border: 4px solid rgba(196, 196, 196, 0.8);
   border-radius: 10px;
+  border: 4px solid rgba(196, 196, 196, 0.8);
+  background-color: rgb(251, 251, 251);
   box-sizing: border-box;
   margin: 0;
   background-size: var(--boxlength) var(--boxlength);
-  background-image:
-    repeating-linear-gradient(0deg, #ccc 0 0.5px, transparent 0.5px 16px),
-    repeating-linear-gradient(-90deg, #ccc 0 0.5px, transparent 0.5px 16px);
   overflow: hidden;
+  /* background-image:
+    repeating-linear-gradient(0deg, #ccc 0 0.5px, transparent 0.5px 16px),
+    repeating-linear-gradient(-90deg, #ccc 0 0.5px, transparent 0.5px 16px); */
 }

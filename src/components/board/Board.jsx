@@ -70,10 +70,14 @@ const Board = ({ hideSourceOnDrag }) => {
   };
 
   const componentLimit = 10;
+  const bgImg = `
+    repeating-linear-gradient(0deg, #ccc 0 0.5px, transparent 0.5px ${globalSize}px),
+    repeating-linear-gradient(-90deg, #ccc 0 0.5px, transparent 0.5px ${globalSize}px)
+  `;
 
   return (
     <div style={{ width: '100%' }}>
-      <div ref={drop} style={{ position: 'relative' }} className="board" id="breadboard">
+      <div ref={drop} style={{ position: 'relative', backgroundImage: settings.showGrid ? bgImg : 'unset' }} className="board" id="breadboard">
         {Object.keys(chips).map((id) => {
           const {
             left, top, name, size, dimensions,
