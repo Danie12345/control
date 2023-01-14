@@ -45,6 +45,7 @@ const Chip = ({
     WebkitMaskImage: mask,
     maskImage: mask,
     fontSize: Math.min(size * 6, 16),
+    transform: `scale(${settings.globalSize / 16})`,
   };
 
   return (

@@ -15,16 +15,16 @@ const Board = ({ hideSourceOnDrag }) => {
 
   const settings = useSelector((state) => state.settings);
   const chips = useSelector((state) => state.chips);
-  const { globalSize } = settings;
+  const { globalSize, zoom } = settings;
 
   const newChip = () => {
     const id = uuidv4();
     const breadboard = document.getElementById('breadboard');
-    const size = 2;
-    const [cHeight, cWidth] = [2 * globalSize, 3 * globalSize]; // chip height and length
+    const size = 2 * zoom;
+    const [cHeight, cWidth] = [2 * globalSize * zoom, 3 * globalSize * zoom]; // chip height and length
     const chip = {
-      top: snap((breadboard.offsetHeight / 2) - (cHeight * size) / 2, globalSize) - globalSize,
-      left: snap((breadboard.offsetWidth / 2) - (cWidth * size) / 2, globalSize) - globalSize,
+      top: (snap((breadboard.offsetHeight / 2) - (cHeight * size) / 2, globalSize) - globalSize) * zoom,
+      left: (snap((breadboard.offsetWidth / 2) - (cWidth * size) / 2, globalSize) - globalSize) * zoom,
       name: '555',
       size,
       dimensions: [cWidth, cHeight],
@@ -37,7 +37,7 @@ const Board = ({ hideSourceOnDrag }) => {
       accept: ItemTypes.CHIP,
       drop(item, monitor) {
         const { x, y } = monitor.getDifferenceFromInitialOffset();
-        const gridboxsize = globalSize;
+        const gridboxsize = globalSize * zoom;
         let left = item.left + x;
         let top = item.top + y;
         if (item.snaps) {
@@ -71,13 +71,21 @@ const Board = ({ hideSourceOnDrag }) => {
 
   const componentLimit = 10;
   const bgImg = `
-    repeating-linear-gradient(0deg, #ccc 0 0.5px, transparent 0.5px ${globalSize}px),
-    repeating-linear-gradient(-90deg, #ccc 0 0.5px, transparent 0.5px ${globalSize}px)
+    repeating-linear-gradient(0deg, #ccc 0 0.5px, transparent 0.5px ${(globalSize * zoom).toFixed(0)}px),
+    repeating-linear-gradient(-90deg, #ccc 0 0.5px, transparent 0.5px ${(globalSize * zoom).toFixed(0)}px)
   `;
+  const bgSize = `${(globalSize * zoom).toFixed(0)}px ${(globalSize * zoom).toFixed(0)}px`;
+  const breadboardStyles = {
+    position: 'relative',
+    maxWidth: '100%',
+    backgroundImage: settings.showGrid ? bgImg : 'unset',
+    backgroundSize: bgSize,
+    overflow: 'auto',
+  };
 
   return (
     <div style={{ width: '100%' }}>
-      <div ref={drop} style={{ position: 'relative', backgroundImage: settings.showGrid ? bgImg : 'unset' }} className="board" id="breadboard">
+      <div ref={drop} style={breadboardStyles} className="board" id="breadboard">
         {Object.keys(chips).map((id) => {
           const {
             left, top, name, size, dimensions,

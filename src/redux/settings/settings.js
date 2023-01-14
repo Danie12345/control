@@ -2,6 +2,7 @@ const initialState = {
   showGrid: true,
   doSnap: true,
   globalSize: 16,
+  zoom: 1,
 };
 
 const TOGGLE_GRID = 'settings/settings/TOGGLE_GRID';

@@ -11,9 +11,5 @@
   background-color: rgb(251, 251, 251);
   box-sizing: border-box;
   margin: 0;
-  background-size: var(--boxlength) var(--boxlength);
   overflow: hidden;
-  /* background-image:
-    repeating-linear-gradient(0deg, #ccc 0 0.5px, transparent 0.5px 16px),
-    repeating-linear-gradient(-90deg, #ccc 0 0.5px, transparent 0.5px 16px); */
 }
