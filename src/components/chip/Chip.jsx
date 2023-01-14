@@ -1,5 +1,6 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import { useDrag } from 'react-dnd';
 import ItemTypes from '../../utils/itemtypes';
 import './Chip.css';
@@ -9,15 +10,19 @@ const role = 'BoxPreview';
 const Chip = ({
   id, left, top, name, hideSourceOnDrag, size, dimensions,
 }) => {
+  const settings = useSelector((state) => state.settings);
+
   const [{ isDragging }, drag] = useDrag(
     () => ({
       type: ItemTypes.CHIP,
-      item: { id, left, top },
+      item: {
+        id, left, top, snaps: settings.doSnap,
+      },
       collect: (monitor) => ({
         isDragging: monitor.isDragging(),
       }),
     }),
-    [id, left || 0, top || 0],
+    [id, left || 0, top || 0, settings.doSnap],
   );
   if (isDragging && !hideSourceOnDrag) {
     return <div ref={drag} />;
