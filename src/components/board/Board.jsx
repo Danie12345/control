@@ -130,6 +130,7 @@ const Board = ({ hideSourceOnDrag }) => {
         <div>
           {'Scale: '}
           {settings.zoom}
+          <br />
           <input id="zoomer" onChange={onZoom} type="range" min="5" max="30" defaultValue={toString(10 * settings.zoom)} />
         </div>
       </div>
