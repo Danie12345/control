@@ -40,7 +40,7 @@ const Board = ({ hideSourceOnDrag }) => {
         const gridboxsize = globalSize * zoom;
         let left = item.left + x;
         let top = item.top + y;
-        if (item.snaps) {
+        if (settings.doSnap) {
           [left, top] = snap([left, top], [gridboxsize, gridboxsize]);
         }
         dispatch(moveChip({ id: item.id, left, top }));

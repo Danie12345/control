@@ -16,7 +16,7 @@ const Chip = ({
     () => ({
       type: ItemTypes.CHIP,
       item: {
-        id, left, top, snaps: settings.doSnap,
+        id, left, top,
       },
       collect: (monitor) => ({
         isDragging: monitor.isDragging(),
