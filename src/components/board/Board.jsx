@@ -83,9 +83,8 @@ const Board = ({ hideSourceOnDrag }) => {
     overflow: 'auto',
   };
 
-  const zoomSlider = document.getElementById('zoomer');
-  const onZoom = () => {
-    dispatch(applyZoom(parseFloat(zoomSlider.value / 10 || 1)));
+  const onZoom = (e) => {
+    dispatch(applyZoom(parseFloat(e.target.value / 10)));
   };
 
   return (
@@ -131,7 +130,7 @@ const Board = ({ hideSourceOnDrag }) => {
           {'Scale: '}
           {settings.zoom}
           <br />
-          <input id="zoomer" onChange={onZoom} type="range" min="5" max="30" defaultValue={toString(10 * settings.zoom)} />
+          <input onChange={(e) => onZoom(e)} type="range" min="5" max="30" value={10 * settings.zoom} />
         </div>
       </div>
     </div>
