@@ -8,7 +8,7 @@ import ItemTypes from '../../utils/itemtypes';
 import Chip from '../chip/Chip';
 import { addChip, delChip, moveChip } from '../../redux/chips/chips';
 import './Board.css';
-import { toggleGrid, toggleSnap } from '../../redux/settings/settings';
+import { toggleGrid, toggleSnap, applyZoom } from '../../redux/settings/settings';
 
 const Board = ({ hideSourceOnDrag }) => {
   const dispatch = useDispatch();
@@ -47,7 +47,7 @@ const Board = ({ hideSourceOnDrag }) => {
         return undefined;
       },
     }),
-    [],
+    [settings],
   );
 
   const [, remove] = useDrop(
@@ -83,6 +83,11 @@ const Board = ({ hideSourceOnDrag }) => {
     overflow: 'auto',
   };
 
+  const zoomSlider = document.getElementById('zoomer');
+  const onZoom = () => {
+    dispatch(applyZoom(parseFloat(zoomSlider.value / 10 || 1)));
+  };
+
   return (
     <div style={{ width: '100%' }}>
       <div ref={drop} style={breadboardStyles} className="board" id="breadboard">
@@ -98,7 +103,7 @@ const Board = ({ hideSourceOnDrag }) => {
               top={top}
               name={name}
               hideSourceOnDrag={hideSourceOnDrag}
-              size={size}
+              size={size * zoom}
               dimensions={dimensions}
             />
           );
@@ -121,6 +126,11 @@ const Board = ({ hideSourceOnDrag }) => {
         <div>
           Snap
           <Switch onChange={checkSnap} checked={settings.doSnap} />
+        </div>
+        <div>
+          {'Scale: '}
+          {settings.zoom}
+          <input id="zoomer" onChange={onZoom} type="range" min="5" max="30" defaultValue={toString(10 * settings.zoom)} />
         </div>
       </div>
     </div>
