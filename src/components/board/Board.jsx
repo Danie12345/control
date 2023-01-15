@@ -23,8 +23,8 @@ const Board = ({ hideSourceOnDrag }) => {
     const size = 2 * zoom;
     const [cHeight, cWidth] = [2 * globalSize * zoom, 3 * globalSize * zoom]; // chip height and length
     const chip = {
-      top: (snap((breadboard.offsetHeight / 2) - (cHeight * size) / 2, globalSize) - globalSize) * zoom,
-      left: (snap((breadboard.offsetWidth / 2) - (cWidth * size) / 2, globalSize) - globalSize) * zoom,
+      top: (snap((breadboard.offsetHeight / 2) - (cHeight * size) / 2, globalSize) - globalSize) / zoom, // divide by zoom makes it spawn centered ✅
+      left: (snap((breadboard.offsetWidth / 2) - (cWidth * size) / 2, globalSize) - globalSize) / zoom,
       name: '555',
       size,
       dimensions: [cWidth, cHeight],
