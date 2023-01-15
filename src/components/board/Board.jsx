@@ -21,7 +21,7 @@ const Board = ({ hideSourceOnDrag }) => {
     const id = uuidv4();
     const breadboard = document.getElementById('breadboard');
     const size = 2 * zoom;
-    const [cHeight, cWidth] = [2 * globalSize * zoom, 3 * globalSize * zoom]; // chip height and length
+    const [cHeight, cWidth] = [2 * (globalSize / zoom), 3 * (globalSize / zoom)]; // chip height and length
     const chip = {
       top: (snap((breadboard.offsetHeight / 2) - (cHeight * size) / 2, globalSize) - globalSize) / zoom, // divide by zoom makes it spawn centered ✅
       left: (snap((breadboard.offsetWidth / 2) - (cWidth * size) / 2, globalSize) - globalSize) / zoom,
@@ -37,9 +37,9 @@ const Board = ({ hideSourceOnDrag }) => {
       accept: ItemTypes.CHIP,
       drop(item, monitor) {
         const { x, y } = monitor.getDifferenceFromInitialOffset();
-        const gridboxsize = globalSize * zoom;
-        let left = item.left + x;
-        let top = item.top + y;
+        const gridboxsize = globalSize;
+        let left = (item.left + x) / zoom;
+        let top = (item.top + y) / zoom;
         if (settings.doSnap) {
           [left, top] = snap([left, top], [gridboxsize, gridboxsize]);
         }
@@ -99,8 +99,8 @@ const Board = ({ hideSourceOnDrag }) => {
             <Chip
               key={id}
               id={id}
-              left={left}
-              top={top}
+              left={left * zoom}
+              top={top * zoom}
               name={name}
               hideSourceOnDrag={hideSourceOnDrag}
               size={size * zoom}
